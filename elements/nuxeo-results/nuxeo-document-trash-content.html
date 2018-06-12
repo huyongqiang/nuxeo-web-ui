@@ -93,8 +93,17 @@ limitations under the License.
                          fetch-aggregates>
     </nuxeo-page-provider>
 
-    <nuxeo-results id="results" display-mode="table" name="[[document.uid]]-trashed" nx-provider="[[nxProvider]]" selected-items="{{selectedItems}}" document="[[document]]">
+    <nuxeo-results id="results"
+                   display-mode="table"
+                   name="[[document.uid]]-trashed"
+                   nx-provider="[[nxProvider]]"
+                   selected-items="{{selectedItems}}"
+                   document="[[document]]"
+                   action-context="{{actionContext}}">
 
+      <div slot="selectionActions">
+        <nuxeo-slot slot="TRASH_SELECTION_ACTIONS" model="[[actionContext]]"></nuxeo-slot>
+      </div>
       <div slot="actions">
         <template is="dom-if" if="[[hasPermission(document, 'Everything')]]">
           <paper-button noink on-tap="_emptyTrash">[[i18n('documentTrashContent.emptyTrash')]]</paper-button>
